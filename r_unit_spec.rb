@@ -2,11 +2,18 @@ require 'test_case'
 
 class TestCaseSpec < TestCase
 
+	def setup
+		@test = WasRun.new("test_method")
+	end
+
 	def test_running
-		test = WasRun.new("test_method")
-		assert_nil(test.was_run)
-		test.run
-		assert_equal(1, test.was_run)
+		@test.run
+		assert_equal(1, @test.was_run)
+	end
+
+	def test_setup
+		@test.run
+		assert_true(@test.was_setup)
 	end
 	
 	def assert_equal(expected, actual)
@@ -15,6 +22,10 @@ class TestCaseSpec < TestCase
 	
 	def assert_nil(value)
 		raise AssertException, "#{value} is not nil" if value != nil
+	end
+
+	def assert_true(value)
+		raise AssertException, "#{value} is not true" if value != true
 	end
 
 end
