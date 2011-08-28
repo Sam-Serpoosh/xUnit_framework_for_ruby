@@ -2,18 +2,10 @@ require 'test_case'
 
 class TestCaseSpec < TestCase
 
-	def setup
-		@test = WasRun.new("test_method")
-	end
-
-	def test_running
-		@test.run
-		assert_equal(1, @test.was_run)
-	end
-
-	def test_setup
-		@test.run
-		assert_true(@test.was_setup)
+	def test_template_method
+		test = WasRun.new("test_method")
+		test.run
+		assert_equal("setup test_method tear_down", test.log)
 	end
 	
 	def assert_equal(expected, actual)

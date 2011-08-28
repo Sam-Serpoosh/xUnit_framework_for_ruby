@@ -12,21 +12,28 @@ class TestCase
 	def run
 		setup	
 		send(@test_method_name)
+		tear_down
+	end
+
+	def tear_down
 	end
 
 end
 
 class WasRun < TestCase
 
-	attr_reader :was_run, :was_setup
+	attr_reader :was_run, :log
 	
 	def setup
-		@was_run = nil
-		@was_setup = true
+		@log = "setup"
 	end
 
 	def test_method
-		@was_run = 1
+		@log += " test_method"
+	end
+
+	def tear_down
+		@log += " tear_down"
 	end
 
 end

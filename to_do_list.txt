@@ -1,8 +1,9 @@
 TODO List For XUnit Framework Project:
 
-Run a single test method;
-Invoke setup at the beginning of test method;
-Invoke tear_down at the end of test method;
+Run a single test method;--->DONE:D
+Invoke setup at the beginning of test method;--->DONE:D
+Log string of execution sequence;-->DONE:D
+Invoke tear_down at the end of test method;--->DONE:D
 Invoke tear_down even if exception occurred;
 Run multiple tests;
 Report collected results of running tests;
