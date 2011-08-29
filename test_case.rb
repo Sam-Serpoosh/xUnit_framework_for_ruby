@@ -1,3 +1,5 @@
+require 'test_result'
+
 class TestCase
 
 	attr_reader :test_method_name
@@ -10,9 +12,16 @@ class TestCase
 	end
 	
 	def run
-		setup	
-		send(@test_method_name)
+		result = TestResult.new
+		result.test_started
+		begin
+			setup	
+			send(@test_method_name)
+		rescue Exception
+			result.test_failed
+		end
 		tear_down
+		result
 	end
 
 	def tear_down
@@ -30,6 +39,11 @@ class WasRun < TestCase
 
 	def test_method
 		@log += " test_method"
+	end
+
+	def test_failing_method
+		@log += " test_failing_method"
+		raise Exception
 	end
 
 	def tear_down
