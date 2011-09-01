@@ -11,17 +11,15 @@ class TestCase
 		@test_method_name = test_method_name
 	end
 	
-	def run
-		result = TestResult.new
+	def run(result)
 		result.test_started
 		begin
 			setup	
 			send(@test_method_name)
-		rescue Exception
+		rescue Exception 
 			result.test_failed
 		end
 		tear_down
-		result
 	end
 
 	def tear_down
@@ -43,7 +41,7 @@ class WasRun < TestCase
 
 	def test_failing_method
 		@log += " test_failing_method"
-		raise Exception
+		raise Exception, "this is test_failing_method"
 	end
 
 	def tear_down
