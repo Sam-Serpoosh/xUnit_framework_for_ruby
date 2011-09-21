@@ -1,6 +1,7 @@
 require 'test_case'
 require 'test_suite'
 require 'test_result'
+require 'test_runner'
 
 class TestCaseSpec < TestCase
 	
@@ -47,19 +48,47 @@ class TestCaseSpec < TestCase
 		assert_equal("2 run, 1 failed", @result.summary)
 	end
 
+	def test_collecting_test_methods_of_a_test_class
+			runner = TestRunner.new("TestClassForTestRunner")
+			test_methods_names = runner.get_test_methods_names
+			assert_equal(2, test_methods_names.length)
+			assert_true(test_methods_names.member?("test_first"))
+			assert_true(test_methods_names.member?("test_second"))
+	end
+
+	def test_running_all_test_methods_of_a_class_and_report_result
+			runner = TestRunner.new("TestClassForTestRunner")
+			runner.run_tests(@result)
+			assert_equal("2 run, 1 failed", @result.summary)
+	end
+
 	def assert_equal(expected, actual)
-		puts "expected #{expected} but was: #{actual}" if actual != expected
+		raise Exception, "expected #{expected} but was: #{actual}" if actual != expected
 	end
 	
 	def assert_nil(value)
-		puts "#{value} is not nil" if value != nil
+		raise Exception, "#{value} is not nil" if value != nil
 	end
 
 	def assert_true(value)
-		puts "#{value} is not true" if value != true
+		raise Excpetion, "#{value} is not true" if value != true
 	end
 
 end
 
 class AssertException < Exception
+end
+
+class TestClassForTestRunner < TestCase
+
+		def test_first
+			raise Exception
+		end
+
+		def test_second
+		end
+
+		def third
+		end
+
 end

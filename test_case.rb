@@ -2,20 +2,20 @@ require 'test_result'
 
 class TestCase
 
-	attr_reader :test_method_name
+	attr_reader :method_name_for_test
 
 	def setup
 	end
 
 	def initialize(test_method_name)
-		@test_method_name = test_method_name
+		@method_name_for_test = test_method_name
 	end
 	
 	def run(result)
 		result.test_started
 		begin
 			setup	
-			send(@test_method_name)
+			send(@method_name_for_test)
 		rescue Exception 
 			result.test_failed
 		end
