@@ -1,4 +1,4 @@
-require 'r_unit_spec'
+require './r_unit_spec'
 
 #normal way of testing methods before TesRunner exists
 main_result = TestResult.new

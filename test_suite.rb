@@ -1,4 +1,4 @@
-require 'test_result'
+require './test_result'
 
 class TestSuite
 

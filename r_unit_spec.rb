@@ -1,7 +1,7 @@
-require 'test_case'
-require 'test_suite'
-require 'test_result'
-require 'test_runner'
+require './test_case'
+require './test_suite'
+require './test_result'
+require './test_runner'
 
 class TestCaseSpec < TestCase
 	

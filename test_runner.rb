@@ -1,4 +1,4 @@
-require 'test_suite'
+require './test_suite'
 
 class TestRunner
 
