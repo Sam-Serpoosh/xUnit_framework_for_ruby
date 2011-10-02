@@ -52,8 +52,8 @@ class TestCaseSpec < TestCase
 			runner = TestRunner.new("TestClassForTestRunner")
 			test_methods_names = runner.get_test_methods_names
 			assert_equal(2, test_methods_names.length)
-			assert_true(test_methods_names.member?("test_first"))
-			assert_true(test_methods_names.member?("test_second"))
+			assert_true(contains?(test_methods_names, "test_first"))
+			assert_true(contains?(test_methods_names, "test_second"))
 	end
 
 	def test_running_all_test_methods_of_a_class_and_report_result
@@ -71,8 +71,17 @@ class TestCaseSpec < TestCase
 	end
 
 	def assert_true(value)
-		raise Excpetion, "#{value} is not true" if value != true
+		raise Exception, "#{value} is not true" if !value.eql?(true)
 	end
+
+	def contains?(collection, item)
+			collection.each do |element|
+					if element.to_s.eql?(item)
+							return true
+					end
+			end
+			false
+	end 
 
 end
 

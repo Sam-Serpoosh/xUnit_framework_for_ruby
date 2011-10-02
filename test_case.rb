@@ -16,7 +16,7 @@ class TestCase
 		begin
 			setup	
 			send(@method_name_for_test)
-		rescue Exception 
+		rescue Exception
 			result.test_failed
 		end
 		tear_down
