@@ -2,7 +2,7 @@ require './r_unit_spec'
 
 #normal way of testing methods before TesRunner exists
 main_result = TestResult.new
-TestCaseSpec.new("test_template_method").run(main_result)
+TestCaseSpec.new("test_normal_flow_of_test_method").run(main_result)
 TestCaseSpec.new("test_report_of_collected_result").run(main_result)
 TestCaseSpec.new("test_failure_should_increase_number_of_failed_tests").run(main_result)
 TestCaseSpec.new("test_report_for_failed_tests").run(main_result)
